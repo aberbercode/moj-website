@@ -1,0 +1,149 @@
+<style>
+  .merken-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .brand {
+    padding: 22px 24px;
+    border-radius: 2px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .brand:hover {
+    filter: brightness(0.93);
+    z-index: 10;
+    transform: scale(1.03);
+  }
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.1;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--black);
+  }
+  .brand-origin {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .brand-desc {
+    font-size: 12px;
+    line-height: 1.65;
+    font-weight: 300;
+    color: var(--muted);
+  }
+
+  .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9 {
+    background: var(--sand);
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; }
+  }
+  .brand { animation: popIn 0.5s ease both; }
+  .b1 { animation-delay: 0.05s; }
+  .b2 { animation-delay: 0.10s; }
+  .b3 { animation-delay: 0.15s; }
+  .b4 { animation-delay: 0.20s; }
+  .b5 { animation-delay: 0.25s; }
+  .b6 { animation-delay: 0.30s; }
+  .b7 { animation-delay: 0.35s; }
+  .b8 { animation-delay: 0.40s; }
+  .b9 { animation-delay: 0.45s; }
+
+  @media (max-width: 700px) {
+    .merken-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .merken-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section style="padding: 80px 40px; background: transparent;">
+
+  <div style="margin-bottom: 40px;">
+    <h2 style="
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 200;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 10px;
+    ">Onze Merken</h2>
+    <p style="
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+    ">Zorgvuldig geselecteerd. Elk merk een verhaal.</p>
+  </div>
+
+  <div class="merken-grid">
+
+    <div class="brand b1">
+      <span class="brand-name">American Vintage</span>
+      <span class="brand-origin">Frankrijk</span>
+      <span class="brand-desc">Tijdloze basics met een Franse touch. Zachte stoffen, eerlijke kleuren, en een gevoel dat klopt.</span>
+    </div>
+
+    <div class="brand b2">
+      <span class="brand-name">By-Bar</span>
+      <span class="brand-origin">Nederland</span>
+      <span class="brand-desc">Nederlands design met een speelse ziel. Vrouwelijk, kleurrijk en altijd net even anders.</span>
+    </div>
+
+    <div class="brand b3">
+      <span class="brand-name">Mads Nørgaard</span>
+      <span class="brand-origin">Denemarken</span>
+      <span class="brand-desc">Scandinavische eenvoud op zijn best. Kwaliteit die je voelt, stijl die blijft.</span>
+    </div>
+
+    <div class="brand b4">
+      <span class="brand-name">Lois</span>
+      <span class="brand-origin">Spanje</span>
+      <span class="brand-desc">De perfecte spijkerbroek bestaat — en die vind je hier. Tijdloos denim voor elke vrouw.</span>
+    </div>
+
+    <div class="brand b5">
+      <span class="brand-name">GAI+LISVA</span>
+      <span class="brand-origin">Denemarken</span>
+      <span class="brand-desc">Deens, doordacht en duurzaam. Mode die respectvol is — voor jou en de wereld om je heen.</span>
+    </div>
+
+    <div class="brand b6">
+      <span class="brand-name">Bellerose</span>
+      <span class="brand-origin">België</span>
+      <span class="brand-desc">Vrij, avontuurlijk en altijd comfortabel. Kleding die meegaat met jouw leven.</span>
+    </div>
+
+    <div class="brand b7">
+      <span class="brand-name">Sissel Edelbo</span>
+      <span class="brand-origin">Denemarken</span>
+      <span class="brand-desc">Handgemaakte sjaals en accessoires vol kleur en karakter. Elk stuk uniek.</span>
+    </div>
+
+    <div class="brand b8">
+      <span class="brand-name">Alohas</span>
+      <span class="brand-origin">Spanje</span>
+      <span class="brand-desc">Schoenen die zo mooi zijn dat je ze nooit meer wil uittrekken. Bewust gemaakt, bewust gedragen.</span>
+    </div>
+
+    <div class="brand b9">
+      <span class="brand-name">My Essential Wardrobe</span>
+      <span class="brand-origin">Denemarken</span>
+      <span class="brand-desc">De basis van een goede garderobe. Stukken die altijd kloppen, altijd passen.</span>
+    </div>
+
+  </div>
+
+</section>

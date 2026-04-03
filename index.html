@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOJ — Kleding met karakter</title>
+  <link rel="stylesheet" href="style/main.css">
+  <style>
+    #about, #merken, #lookbook, #contact { scroll-margin-top: 80px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigatie -->
+  <div id="nav"></div>
+
+  <!-- Hero -->
+  <div id="hero"></div>
+
+  <!-- Over ons -->
+  <div id="about"></div>
+
+  <!-- Merken -->
+  <div id="merken"></div>
+
+  <!-- Lookbook -->
+  <div id="lookbook"></div>
+
+  <!-- Contact -->
+  <div id="contact"></div>
+
+  <script>
+    const sections = ['nav', 'hero', 'about', 'merken', 'lookbook', 'contact'];
+    sections.forEach(name => {
+      fetch(`sections/${name}.html`)
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById(name).innerHTML = html;
+        });
+    });
+  </script>
+
+</body>
+</html>
