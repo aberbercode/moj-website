@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bellerose — MOJ Harlingen</title>
+  <link rel="stylesheet" href="../style/main.css">
+  <style>
+    html, body { height: 100%; }
+    .brand-page {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      margin-top: 76px;
+      height: calc(100vh - 76px);
+      padding: 0;
+      overflow: hidden;
+    }
+    .brand-page-photo {
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+    .brand-page-photo img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 4px;
+    }
+    .brand-page-text {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+      overflow: auto;
+    }
+    @media (max-width: 800px) {
+      .brand-page { grid-template-columns: 1fr; height: auto; }
+      .brand-page-photo { height: 50vh; padding: 24px; }
+      .brand-page-text { height: auto; padding: 56px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav"></div>
+
+  <section class="brand-page" style="background: var(--sand);">
+
+    <div class="brand-page-photo">
+      <img src="../images/merken/bellerose.jpeg" alt="Bellerose"/>
+    </div>
+
+    <div class="brand-page-text">
+      <p style="
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--olive-dark);
+        margin-bottom: 10px;
+      ">België</p>
+
+      <h1 style="
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 200;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--black);
+        margin-bottom: 24px;
+      ">Bellerose</h1>
+
+      <p style="
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 19px;
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--muted);
+      ">Sinds de zomer van 1989 selecteert Bellerose goed ontworpen en duurzame essentials die comfort en stijl combineren, voor jong en oud, van top tot teen. Het merk staat voor duurzaamheid, comfort en tijdloze aantrekkingskracht. Stukken die het dagelijks leven een beetje mooier maken.</p>
+    </div>
+
+  </section>
+
+  <script>
+    fetch('../sections/nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav').innerHTML = html;
+        document.querySelectorAll('#nav a').forEach(a => {
+          const href = a.getAttribute('href');
+          if (href && !href.startsWith('http')) {
+            a.setAttribute('href', '../' + href);
+          }
+        });
+      });
+  </script>
+
+</body>
+</html>

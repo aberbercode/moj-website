@@ -1,6 +1,61 @@
-<section style="padding: 80px 40px; background: transparent;">
+<style>
+  .lb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 26px 22px;
+  }
+  .lb-item {
+    display: block;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: 0 10px 24px rgba(42, 45, 30, 0.14);
+  }
+  .lb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .lb-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: none;
+  }
+  .lb-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 1.8vw, 24px);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--black);
+  }
 
-  <div style="margin-bottom: 48px;">
+  .lb1  { transform: translateY(-14px); }
+  .lb2  { transform: translateY(18px); }
+  .lb3  { transform: translateY(-8px); }
+  .lb4  { transform: translateY(12px); }
+  .lb5  { transform: translateY(-16px); }
+  .lb6  { transform: translateY(-6px); }
+  .lb7  { transform: translateY(-12px); }
+  .lb8  { transform: translateY(16px); }
+  .lb9  { transform: translateY(4px); }
+
+  @media (max-width: 700px) {
+    .lb-grid { grid-template-columns: 1fr 1fr; }
+    .lb-item { transform: none !important; }
+  }
+  @media (max-width: 480px) {
+    .lb-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section style="padding: 156px 40px 80px; background: transparent;">
+
+  <div style="margin-bottom: 80px;">
     <h2 style="
       font-family: 'Josefin Sans', sans-serif;
       font-size: clamp(28px, 4vw, 48px);
@@ -8,133 +63,56 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--black);
-      margin-bottom: 12px;
     ">Lookbook</h2>
-    <p style="
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 300;
-      color: var(--muted);
-      letter-spacing: 1px;
-    ">Sfeer, stijl en het gevoel van MOJ.</p>
   </div>
 
-  <div style="
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    gap: 10px;
-  ">
+  <div class="lb-grid">
 
     <!-- Grote foto links bovenaan — 2 rijen hoog -->
-    <div style="grid-column: 1; grid-row: 1 / 3;">
-      <img src="../images/IMG_4914.png" style="
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb1" style="grid-column: 1; grid-row: 1 / 3;">
+      <img src="../images/IMG_4914.png"/>
     </div>
 
     <!-- Rechts bovenaan -->
-    <div style="grid-column: 2; grid-row: 1;">
-      <img src="../images/IMG_4912.png" style="
-        width: 100%;
-        height: 320px;
-        object-fit: cover;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb2" style="grid-column: 2; grid-row: 1; height: 320px;">
+      <img src="../images/IMG_4912.png"/>
     </div>
 
     <!-- Rechts van midden bovenaan -->
-    <div style="grid-column: 3; grid-row: 1;">
-      <img src="../images/IMG_4915.png" style="
-        width: 100%;
-        height: 320px;
-        object-fit: cover;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb3" style="grid-column: 3; grid-row: 1; height: 320px;">
+      <img src="../images/IMG_4915.png"/>
     </div>
 
-    <!-- Midden rij 2 -->
-    <div style="grid-column: 2; grid-row: 2;">
-      <img src="../images/IMG_4916.png" style="
-        width: 100%;
-        height: 320px;
-        object-fit: cover;
-        object-position: top;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <!-- Gedicht, als een van de tegels tussen de foto's -->
+    <div class="lb-item lb-text lb4" style="grid-column: 2; grid-row: 2; height: 320px;">
+      <p>We love…<br>the rythm of the sea<br>stormy winds and<br>whispering trees</p>
     </div>
 
     <!-- Rechts rij 2 -->
-    <div style="grid-column: 3; grid-row: 2;">
-      <img src="../images/IMG_4910.jpeg" style="
-        width: 100%;
-        height: 320px;
-        object-fit: cover;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb5" style="grid-column: 3; grid-row: 2; height: 320px;">
+      <img src="../images/IMG_4910.jpeg"/>
     </div>
 
     <!-- Rij 3 — drie even grote foto's -->
-    <div style="grid-column: 1; grid-row: 3;">
-      <img src="../images/IMG_4911.png" style="
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        object-position: top;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb6" style="grid-column: 1; grid-row: 3; height: 280px;">
+      <img src="../images/IMG_4911.png" style="object-position: top;"/>
     </div>
 
-    <div style="grid-column: 2; grid-row: 3;">
-      <img src="../images/preview.png" style="
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        object-position: top;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb7" style="grid-column: 2; grid-row: 3; height: 280px;">
+      <img src="../images/preview.png" style="object-position: top;"/>
     </div>
 
-    <div style="grid-column: 3; grid-row: 3;">
-      <img src="../images/preview (1).png" style="
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb8" style="grid-column: 3; grid-row: 3; height: 280px;">
+      <img src="../images/preview (1).png"/>
     </div>
 
     <!-- Rij 4 — twee brede foto's -->
-    <div style="grid-column: 1 / 3; grid-row: 4;">
-      <img src="../images/IMG_4913.png" style="
-        width: 100%;
-        height: 260px;
-        object-fit: cover;
-        object-position: center 30%;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb9" style="grid-column: 1 / 3; grid-row: 4; height: 260px;">
+      <img src="../images/IMG_4913.png" style="object-position: center 30%;"/>
     </div>
 
-    <div style="grid-column: 3; grid-row: 4;">
-      <img src="../images/preview (2).png" style="
-        width: 100%;
-        height: 260px;
-        object-fit: cover;
-        display: block;
-        border-radius: 2px;
-      "/>
+    <div class="lb-item lb10" style="grid-column: 3; grid-row: 4; height: 260px;">
+      <img src="../images/preview (2).png"/>
     </div>
 
   </div>

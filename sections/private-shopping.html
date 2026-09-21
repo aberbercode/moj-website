@@ -1,0 +1,89 @@
+<style>
+  .ps-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    min-height: 100vh;
+  }
+  .ps-photo {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+  }
+  .ps-photo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 4px;
+  }
+  .ps-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 156px 80px 80px;
+  }
+  @media (max-width: 800px) {
+    .ps-page { grid-template-columns: 1fr; }
+    .ps-photo { height: 50vh; }
+    .ps-text { padding: 56px 32px; }
+  }
+</style>
+
+<section class="ps-page" style="background: var(--sand);">
+
+  <div class="ps-photo">
+    <img src="../images/private-shopping/blue-fish.jpeg" alt="Private Shopping bij MOJ"/>
+  </div>
+
+  <div class="ps-text">
+    <h1 style="
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 200;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 24px;
+    ">Private Shopping</h1>
+
+    <p style="
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 28px;
+    ">Shoppen met je vriendinnen, collega's of familie? Op woensdag- of donderdagavond openen we de winkel speciaal voor jullie. In alle rust passen, persoonlijk styling-advies, een drankje en iets lekkers erbij.</p>
+
+    <p style="
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 36px;
+    ">Een private shopavond is voor groepen van 4 tot 10 personen, duurt ongeveer twee uur en is helemaal gratis. Stuur ons minimaal een week van tevoren een berichtje, dan plannen we samen een datum.</p>
+
+    <a href="https://wa.me/31612220994" target="_blank" style="
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      padding: 12px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+    ">Plan je avond</a>
+  </div>
+
+</section>

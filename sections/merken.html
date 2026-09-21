@@ -7,6 +7,7 @@
   }
 
   .brand {
+    display: block;
     padding: 22px 24px;
     border-radius: 2px;
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -33,14 +34,7 @@
     display: block;
     margin-bottom: 10px;
   }
-  .brand-desc {
-    font-size: 12px;
-    line-height: 1.65;
-    font-weight: 300;
-    color: var(--muted);
-  }
-
-  .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9 {
+  .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10, .b11, .b12, .b13, .b14 {
     background: var(--sand);
   }
 
@@ -58,6 +52,11 @@
   .b7 { animation-delay: 0.35s; }
   .b8 { animation-delay: 0.40s; }
   .b9 { animation-delay: 0.45s; }
+  .b10 { animation-delay: 0.50s; }
+  .b11 { animation-delay: 0.55s; }
+  .b12 { animation-delay: 0.60s; }
+  .b13 { animation-delay: 0.65s; }
+  .b14 { animation-delay: 0.70s; }
 
   @media (max-width: 700px) {
     .merken-grid { grid-template-columns: 1fr 1fr; }
@@ -67,17 +66,17 @@
   }
 </style>
 
-<section style="padding: 80px 40px; background: transparent;">
+<section style="padding: 156px 40px 80px; background: transparent;">
 
-  <div style="margin-bottom: 40px;">
+  <div style="margin-bottom: 80px;">
     <h2 style="
       font-family: 'Josefin Sans', sans-serif;
-      font-size: clamp(20px, 3vw, 32px);
+      font-size: clamp(28px, 4vw, 48px);
       font-weight: 200;
-      letter-spacing: 6px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--black);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     ">Onze Merken</h2>
     <p style="
       font-family: 'Cormorant Garamond', serif;
@@ -90,59 +89,75 @@
 
   <div class="merken-grid">
 
-    <div class="brand b1">
+    <a class="brand b1" href="merken/american-vintage.html">
       <span class="brand-name">American Vintage</span>
       <span class="brand-origin">Frankrijk</span>
-      <span class="brand-desc">Tijdloze basics met een Franse touch. Zachte stoffen, eerlijke kleuren, en een gevoel dat klopt.</span>
-    </div>
+    </a>
 
-    <div class="brand b2">
+    <a class="brand b2" href="merken/by-bar.html">
       <span class="brand-name">By-Bar</span>
       <span class="brand-origin">Nederland</span>
-      <span class="brand-desc">Nederlands design met een speelse ziel. Vrouwelijk, kleurrijk en altijd net even anders.</span>
-    </div>
+    </a>
 
-    <div class="brand b3">
+    <a class="brand b3" href="merken/mads-norgaard.html">
       <span class="brand-name">Mads Nørgaard</span>
       <span class="brand-origin">Denemarken</span>
-      <span class="brand-desc">Scandinavische eenvoud op zijn best. Kwaliteit die je voelt, stijl die blijft.</span>
-    </div>
+    </a>
 
-    <div class="brand b4">
+    <a class="brand b4" href="merken/lois.html">
       <span class="brand-name">Lois</span>
       <span class="brand-origin">Spanje</span>
-      <span class="brand-desc">De perfecte spijkerbroek bestaat — en die vind je hier. Tijdloos denim voor elke vrouw.</span>
-    </div>
+    </a>
 
-    <div class="brand b5">
+    <a class="brand b5" href="merken/gai-lisva.html">
       <span class="brand-name">GAI+LISVA</span>
       <span class="brand-origin">Denemarken</span>
-      <span class="brand-desc">Deens, doordacht en duurzaam. Mode die respectvol is — voor jou en de wereld om je heen.</span>
-    </div>
+    </a>
 
-    <div class="brand b6">
+    <a class="brand b6" href="merken/bellerose.html">
       <span class="brand-name">Bellerose</span>
       <span class="brand-origin">België</span>
-      <span class="brand-desc">Vrij, avontuurlijk en altijd comfortabel. Kleding die meegaat met jouw leven.</span>
-    </div>
+    </a>
 
-    <div class="brand b7">
+    <a class="brand b7" href="merken/sissel-edelbo.html">
       <span class="brand-name">Sissel Edelbo</span>
       <span class="brand-origin">Denemarken</span>
-      <span class="brand-desc">Handgemaakte sjaals en accessoires vol kleur en karakter. Elk stuk uniek.</span>
-    </div>
+    </a>
 
-    <div class="brand b8">
+    <a class="brand b8" href="merken/alohas.html">
       <span class="brand-name">Alohas</span>
       <span class="brand-origin">Spanje</span>
-      <span class="brand-desc">Schoenen die zo mooi zijn dat je ze nooit meer wil uittrekken. Bewust gemaakt, bewust gedragen.</span>
-    </div>
+    </a>
 
-    <div class="brand b9">
+    <a class="brand b9" href="merken/my-essential-wardrobe.html">
       <span class="brand-name">My Essential Wardrobe</span>
       <span class="brand-origin">Denemarken</span>
-      <span class="brand-desc">De basis van een goede garderobe. Stukken die altijd kloppen, altijd passen.</span>
-    </div>
+    </a>
+
+    <a class="brand b10" href="merken/club-lavenir.html">
+      <span class="brand-name">Club L'Avenir</span>
+      <span class="brand-origin">België</span>
+    </a>
+
+    <a class="brand b11" href="merken/pavement-shoes.html">
+      <span class="brand-name">Pavement Shoes</span>
+      <span class="brand-origin">Denemarken</span>
+    </a>
+
+    <a class="brand b12" href="merken/project-aj117.html">
+      <span class="brand-name">Project AJ117</span>
+      <span class="brand-origin">Denemarken</span>
+    </a>
+
+    <a class="brand b13" href="merken/knit-ted.html">
+      <span class="brand-name">Knit-ted</span>
+      <span class="brand-origin">Nederland</span>
+    </a>
+
+    <a class="brand b14" href="merken/hod-paris.html">
+      <span class="brand-name">Hod Paris</span>
+      <span class="brand-origin">Frankrijk</span>
+    </a>
 
   </div>
 

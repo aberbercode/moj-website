@@ -6,7 +6,22 @@
   <title>MOJ — Kleding met karakter</title>
   <link rel="stylesheet" href="style/main.css">
   <style>
-    #about, #merken, #lookbook, #contact { scroll-margin-top: 80px; }
+    #about { scroll-margin-top: 80px; }
+
+    /* Homepage-only: laat de nav transparant doorlopen over de hero-foto,
+       maar alleen zolang de hero nog in beeld is — daarna weer een gewone
+       ondoorzichtige balk, zodat tekst er niet doorheen overlapt. */
+    #nav nav {
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    #nav.hero-nav nav {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-bottom: none !important;
+    }
+    #nav.hero-nav nav a {
+      color: #2E2E2E !important;
+    }
   </style>
 </head>
 <body>
@@ -20,23 +35,26 @@
   <!-- Over ons -->
   <div id="about"></div>
 
-  <!-- Merken -->
-  <div id="merken"></div>
-
-  <!-- Lookbook -->
-  <div id="lookbook"></div>
-
-  <!-- Contact -->
-  <div id="contact"></div>
-
   <script>
-    const sections = ['nav', 'hero', 'about', 'merken', 'lookbook', 'contact'];
-    sections.forEach(name => {
+    const sections = ['nav', 'hero', 'about'];
+    Promise.all(sections.map(name =>
       fetch(`sections/${name}.html`)
         .then(r => r.text())
         .then(html => {
           document.getElementById(name).innerHTML = html;
-        });
+        })
+    )).then(() => {
+      const navEl = document.getElementById('nav');
+      const heroEl = document.getElementById('hero');
+
+      function updateNav() {
+        const threshold = heroEl.offsetHeight - 40;
+        navEl.classList.toggle('hero-nav', window.scrollY < threshold);
+      }
+
+      navEl.classList.add('hero-nav');
+      updateNav();
+      window.addEventListener('scroll', updateNav);
     });
   </script>
 

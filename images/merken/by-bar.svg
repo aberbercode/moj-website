@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#E8E2D0"/>
+  <rect x="20" y="20" width="760" height="560" fill="none" stroke="#8A9460" stroke-width="1"/>
+  <text x="400" y="285" font-family="Georgia, 'Cormorant Garamond', serif" font-style="italic" font-size="42" fill="#2a2d1e" text-anchor="middle">By-Bar</text>
+  <text x="400" y="325" font-family="Arial, sans-serif" font-size="13" letter-spacing="4" fill="#6a7050" text-anchor="middle">NEDERLAND</text>
+</svg>
