@@ -9,21 +9,325 @@
 <body>
 
   <!-- Navigatie -->
-  <div id="nav"></div>
+  <div id="nav">
+    <style>
+      .nav-merken-item { position: relative; }
+      .merken-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        width: max-content;
+        max-width: 600px;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(8px);
+        border: 0.5px solid var(--border);
+        border-radius: 2px;
+        box-shadow: 0 16px 32px rgba(42,45,30,0.14);
+        padding: 26px 32px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 28px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .nav-merken-item:hover .merken-dropdown,
+      .merken-dropdown:hover {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+      .merken-dropdown a {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+      .merken-dropdown a:hover {
+        color: var(--olive-dark);
+      }
+      @media (max-width: 900px) {
+        .merken-dropdown { display: none; }
+      }
+
+      /* Mobiel: hamburgermenu — de laptop-weergave hieronder blijft volledig ongewijzigd,
+         want .nav-collapsible is op desktop "display: contents" (onzichtbaar als wrapper,
+         ul + Instagram-link gedragen zich gewoon als losse flex-kinderen van nav, zoals nu). */
+      .nav-toggle-checkbox { display: none; }
+      .nav-toggle-btn { display: none; }
+      .nav-collapsible { display: contents; }
+
+      @media (max-width: 900px) {
+        .nav-bar { padding: 18px 20px !important; }
+        .nav-logo { font-size: 20px !important; letter-spacing: 6px !important; }
+
+        .nav-toggle-btn {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          width: 26px;
+          height: 20px;
+          cursor: pointer;
+        }
+        .nav-toggle-btn span {
+          display: block;
+          height: 1px;
+          width: 100%;
+          background: var(--black);
+        }
+
+        .nav-collapsible {
+          display: none;
+        }
+        .nav-toggle-checkbox:checked ~ .nav-collapsible {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          max-height: calc(100vh - 60px);
+          overflow-y: auto;
+          background: rgba(255,255,255,0.98);
+          backdrop-filter: blur(8px);
+          border-bottom: 0.5px solid var(--border);
+          padding: 8px 20px 24px;
+        }
+        .nav-menu {
+          flex-direction: column !important;
+          gap: 0 !important;
+          width: 100%;
+        }
+        .nav-menu li a {
+          display: block;
+          padding: 14px 0;
+          border-bottom: 0.5px solid var(--border);
+          color: var(--muted) !important;
+        }
+        .nav-social {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <nav class="nav-bar" style="
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+    ">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" style="
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 24px;
+        font-weight: 200;
+        letter-spacing: 10px;
+        color: var(--black);
+      ">MOJ</a>
+
+      <!-- Mobiel: hamburger-toggle -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+      <label for="nav-toggle" class="nav-toggle-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <div class="nav-collapsible">
+
+        <!-- Menu links -->
+        <ul class="nav-menu" style="
+          list-style: none;
+          display: flex;
+          gap: 40px;
+        ">
+          <li><a href="index.html#about" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Over ons</a></li>
+
+          <li class="nav-merken-item">
+            <a href="merken.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Merken</a>
+
+            <div class="merken-dropdown">
+              <a href="merken/american-vintage.html">American Vintage</a>
+              <a href="merken/by-bar.html">By-Bar</a>
+              <a href="merken/mads-norgaard.html">Mads Nørgaard</a>
+              <a href="merken/lois.html">Lois</a>
+              <a href="merken/gai-lisva.html">GAI+LISVA</a>
+              <a href="merken/bellerose.html">Bellerose</a>
+              <a href="merken/sissel-edelbo.html">Sissel Edelbo</a>
+              <a href="merken/alohas.html">Alohas</a>
+              <a href="merken/my-essential-wardrobe.html">My Essential Wardrobe</a>
+              <a href="merken/club-lavenir.html">Club L'Avenir</a>
+              <a href="merken/pavement-shoes.html">Pavement Shoes</a>
+              <a href="merken/project-aj117.html">Project AJ117</a>
+              <a href="merken/knit-ted.html">Knit-ted</a>
+              <a href="merken/hod-paris.html">Hod Paris</a>
+            </div>
+          </li>
+
+          <li><a href="lookbook.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Lookbook</a></li>
+          <li><a href="private-shopping.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Private Shopping</a></li>
+          <li><a href="contact.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Contact</a></li>
+        </ul>
+
+        <!-- Instagram link -->
+        <a href="https://instagram.com" target="_blank" class="nav-social" style="
+          font-size: 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--muted);
+          border-bottom: 0.5px solid var(--border);
+          padding-bottom: 2px;
+        ">Instagram</a>
+
+      </div>
+
+    </nav>
+  </div>
 
   <!-- Lookbook -->
-  <div id="lookbook"></div>
+  <div id="lookbook">
+    <style>
+      .lb-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: 26px 22px;
+      }
+      .lb-item {
+        display: block;
+        overflow: hidden;
+        border-radius: 0;
+        box-shadow: 0 10px 24px rgba(42, 45, 30, 0.14);
+      }
+      .lb-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .lb-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        box-shadow: none;
+      }
+      .lb-text p {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: clamp(18px, 1.8vw, 24px);
+        font-weight: 300;
+        line-height: 1.6;
+        color: var(--black);
+      }
 
-  <script>
-    const sections = ['nav', 'lookbook'];
-    sections.forEach(name => {
-      fetch(`sections/${name}.html`)
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById(name).innerHTML = html;
-        });
-    });
-  </script>
+      .lb1  { transform: translateY(-14px); }
+      .lb2  { transform: translateY(18px); }
+      .lb3  { transform: translateY(-8px); }
+      .lb4  { transform: translateY(12px); }
+      .lb5  { transform: translateY(-16px); }
+      .lb6  { transform: translateY(-6px); }
+      .lb7  { transform: translateY(-12px); }
+      .lb8  { transform: translateY(16px); }
+      .lb9  { transform: translateY(4px); }
+
+      @media (max-width: 700px) {
+        .lb-grid { grid-template-columns: 1fr 1fr; }
+        .lb-item { transform: none !important; }
+      }
+      @media (max-width: 600px) {
+        .lb-grid { grid-template-columns: 1fr; }
+        .lb-item {
+          grid-column: auto !important;
+          grid-row: auto !important;
+          height: 300px !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .lb-section { padding: 120px 20px 60px !important; }
+      }
+    </style>
+
+    <section class="lb-section" style="padding: 156px 40px 80px; background: transparent;">
+
+      <div style="margin-bottom: 80px;">
+        <h2 style="
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: clamp(28px, 4vw, 48px);
+          font-weight: 200;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          color: var(--black);
+        ">Lookbook</h2>
+      </div>
+
+      <div class="lb-grid">
+
+        <!-- Grote foto links bovenaan — 2 rijen hoog -->
+        <div class="lb-item lb1" style="grid-column: 1; grid-row: 1 / 3;">
+          <img src="../images/IMG_4914.png"/>
+        </div>
+
+        <!-- Rechts bovenaan -->
+        <div class="lb-item lb2" style="grid-column: 2; grid-row: 1; height: 320px;">
+          <img src="../images/IMG_4912.png"/>
+        </div>
+
+        <!-- Rechts van midden bovenaan -->
+        <div class="lb-item lb3" style="grid-column: 3; grid-row: 1; height: 320px;">
+          <img src="../images/IMG_4915.png"/>
+        </div>
+
+        <!-- Gedicht, als een van de tegels tussen de foto's -->
+        <div class="lb-item lb-text lb4" style="grid-column: 2; grid-row: 2; height: 320px;">
+          <p>We love…<br>the rythm of the sea<br>stormy winds and<br>whispering trees</p>
+        </div>
+
+        <!-- Rechts rij 2 -->
+        <div class="lb-item lb5" style="grid-column: 3; grid-row: 2; height: 320px;">
+          <img src="../images/IMG_4910.jpeg"/>
+        </div>
+
+        <!-- Rij 3 — drie even grote foto's -->
+        <div class="lb-item lb6" style="grid-column: 1; grid-row: 3; height: 280px;">
+          <img src="../images/IMG_4911.png" style="object-position: top;"/>
+        </div>
+
+        <div class="lb-item lb7" style="grid-column: 2; grid-row: 3; height: 280px;">
+          <img src="../images/preview.png" style="object-position: top;"/>
+        </div>
+
+        <div class="lb-item lb8" style="grid-column: 3; grid-row: 3; height: 280px;">
+          <img src="../images/preview (1).png"/>
+        </div>
+
+        <!-- Rij 4 — twee brede foto's -->
+        <div class="lb-item lb9" style="grid-column: 1 / 3; grid-row: 4; height: 260px;">
+          <img src="../images/IMG_4913.png" style="object-position: center 30%;"/>
+        </div>
+
+        <div class="lb-item lb10" style="grid-column: 3; grid-row: 4; height: 260px;">
+          <img src="../images/preview (2).png"/>
+        </div>
+
+      </div>
+
+    </section>
+  </div>
 
 </body>
 </html>

@@ -27,35 +27,438 @@
 <body>
 
   <!-- Navigatie -->
-  <div id="nav"></div>
-
-  <!-- Hero -->
-  <div id="hero"></div>
-
-  <!-- Over ons -->
-  <div id="about"></div>
-
-  <script>
-    const sections = ['nav', 'hero', 'about'];
-    Promise.all(sections.map(name =>
-      fetch(`sections/${name}.html`)
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById(name).innerHTML = html;
-        })
-    )).then(() => {
-      const navEl = document.getElementById('nav');
-      const heroEl = document.getElementById('hero');
-
-      function updateNav() {
-        const threshold = heroEl.offsetHeight - 40;
-        navEl.classList.toggle('hero-nav', window.scrollY < threshold);
+  <div id="nav">
+    <style>
+      .nav-merken-item { position: relative; }
+      .merken-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        width: max-content;
+        max-width: 600px;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(8px);
+        border: 0.5px solid var(--border);
+        border-radius: 2px;
+        box-shadow: 0 16px 32px rgba(42,45,30,0.14);
+        padding: 26px 32px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 28px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .nav-merken-item:hover .merken-dropdown,
+      .merken-dropdown:hover {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+      .merken-dropdown a {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+      .merken-dropdown a:hover {
+        color: var(--olive-dark);
+      }
+      @media (max-width: 900px) {
+        .merken-dropdown { display: none; }
       }
 
-      navEl.classList.add('hero-nav');
-      updateNav();
-      window.addEventListener('scroll', updateNav);
-    });
+      /* Mobiel: hamburgermenu — de laptop-weergave hieronder blijft volledig ongewijzigd,
+         want .nav-collapsible is op desktop "display: contents" (onzichtbaar als wrapper,
+         ul + Instagram-link gedragen zich gewoon als losse flex-kinderen van nav, zoals nu). */
+      .nav-toggle-checkbox { display: none; }
+      .nav-toggle-btn { display: none; }
+      .nav-collapsible { display: contents; }
+
+      @media (max-width: 900px) {
+        .nav-bar { padding: 18px 20px !important; }
+        .nav-logo { font-size: 20px !important; letter-spacing: 6px !important; }
+
+        .nav-toggle-btn {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          width: 26px;
+          height: 20px;
+          cursor: pointer;
+        }
+        .nav-toggle-btn span {
+          display: block;
+          height: 1px;
+          width: 100%;
+          background: var(--black);
+        }
+
+        .nav-collapsible {
+          display: none;
+        }
+        .nav-toggle-checkbox:checked ~ .nav-collapsible {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          max-height: calc(100vh - 60px);
+          overflow-y: auto;
+          background: rgba(255,255,255,0.98);
+          backdrop-filter: blur(8px);
+          border-bottom: 0.5px solid var(--border);
+          padding: 8px 20px 24px;
+        }
+        .nav-menu {
+          flex-direction: column !important;
+          gap: 0 !important;
+          width: 100%;
+        }
+        .nav-menu li a {
+          display: block;
+          padding: 14px 0;
+          border-bottom: 0.5px solid var(--border);
+          color: var(--muted) !important;
+        }
+        .nav-social {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <nav class="nav-bar" style="
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+    ">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" style="
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 24px;
+        font-weight: 200;
+        letter-spacing: 10px;
+        color: var(--black);
+      ">MOJ</a>
+
+      <!-- Mobiel: hamburger-toggle -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+      <label for="nav-toggle" class="nav-toggle-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <div class="nav-collapsible">
+
+        <!-- Menu links -->
+        <ul class="nav-menu" style="
+          list-style: none;
+          display: flex;
+          gap: 40px;
+        ">
+          <li><a href="index.html#about" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Over ons</a></li>
+
+          <li class="nav-merken-item">
+            <a href="merken.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Merken</a>
+
+            <div class="merken-dropdown">
+              <a href="merken/american-vintage.html">American Vintage</a>
+              <a href="merken/by-bar.html">By-Bar</a>
+              <a href="merken/mads-norgaard.html">Mads Nørgaard</a>
+              <a href="merken/lois.html">Lois</a>
+              <a href="merken/gai-lisva.html">GAI+LISVA</a>
+              <a href="merken/bellerose.html">Bellerose</a>
+              <a href="merken/sissel-edelbo.html">Sissel Edelbo</a>
+              <a href="merken/alohas.html">Alohas</a>
+              <a href="merken/my-essential-wardrobe.html">My Essential Wardrobe</a>
+              <a href="merken/club-lavenir.html">Club L'Avenir</a>
+              <a href="merken/pavement-shoes.html">Pavement Shoes</a>
+              <a href="merken/project-aj117.html">Project AJ117</a>
+              <a href="merken/knit-ted.html">Knit-ted</a>
+              <a href="merken/hod-paris.html">Hod Paris</a>
+            </div>
+          </li>
+
+          <li><a href="lookbook.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Lookbook</a></li>
+          <li><a href="private-shopping.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Private Shopping</a></li>
+          <li><a href="contact.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Contact</a></li>
+        </ul>
+
+        <!-- Instagram link -->
+        <a href="https://instagram.com" target="_blank" class="nav-social" style="
+          font-size: 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--muted);
+          border-bottom: 0.5px solid var(--border);
+          padding-bottom: 2px;
+        ">Instagram</a>
+
+      </div>
+
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <div id="hero">
+    <style>
+      @media (max-width: 480px) {
+        .hero-text { left: 24px !important; right: 24px !important; bottom: 32px !important; max-width: none !important; }
+      }
+    </style>
+
+    <section style="
+      position: relative;
+      height: 40vh;
+      min-height: 600px;
+      overflow: hidden;
+      margin-top: 0;
+      padding: 0;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+    ">
+
+      <!-- Foto -->
+      <img src="../images/hero-harlingen.jpg" style="
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center 65%;
+        filter: brightness(1.12);
+      "/>
+
+      <!-- Tekst linksonder -->
+      <div class="hero-text" style="
+        position: absolute;
+        bottom: 60px;
+        left: 60px;
+        max-width: 560px;
+        z-index: 2;
+      ">
+        <h1 style="
+          font-family: 'Josefin Sans', sans-serif;
+          font-style: normal;
+          font-size: clamp(40px, 6vw, 80px);
+          font-weight: 400;
+          line-height: 1.1;
+          color: #FF6600;
+          margin-bottom: 14px;
+        ">Even the way you dress is art.</h1>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- Over ons -->
+  <div id="about">
+    <style>
+      .about-row {
+        display: grid;
+        gap: 60px;
+        align-items: center;
+        margin: 100px 0;
+      }
+      .about-row.text-left  { grid-template-columns: 0.8fr 1.2fr; }
+      .about-row.text-right { grid-template-columns: 1.2fr 0.8fr; }
+      .about-photos {
+        position: relative;
+        height: 620px;
+      }
+      .about-photo-back,
+      .about-photo-front {
+        position: absolute;
+        object-fit: cover;
+        border-radius: 2px;
+        display: block;
+      }
+      .about-photo-back {
+        top: 0;
+        width: 56%;
+        height: 90%;
+      }
+      .about-photo-front {
+        width: 42%;
+        height: 60%;
+        box-shadow: 0 24px 48px rgba(42, 45, 30, 0.2);
+        z-index: 2;
+      }
+      .about-photos.pair-1 .about-photo-back  { left: 0; }
+      .about-photos.pair-1 .about-photo-front { top: 32%; left: 42%; }
+      .about-photos.pair-2 .about-photo-back  { right: 0; }
+      .about-photos.pair-2 .about-photo-front { top: 32%; right: 42%; }
+      .about-photo-single {
+        width: 100%;
+        height: 620px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 2px;
+        display: block;
+      }
+
+      @media (max-width: 800px) {
+        .about-row {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          margin: 56px 0;
+        }
+        .about-row > *:first-child { order: 1; }
+        .about-row > *:last-child { order: 2; }
+        .about-photos { height: auto; }
+        .about-photo-back,
+        .about-photo-front {
+          position: static;
+          width: 100%;
+          height: 300px;
+          box-shadow: none;
+        }
+        .about-photo-back { margin-bottom: 16px; }
+      }
+    </style>
+
+    <section style="
+      padding: 100px 60px;
+      max-width: 1140px;
+      margin: 0 auto;
+    ">
+
+      <!-- Rij 1: tekst links, foto's rechts -->
+      <div class="about-row text-left">
+
+        <div>
+          <p style="
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(15px, 1.6vw, 19px);
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--black);
+            margin-bottom: 20px;
+          ">“I think everything in life is art. What you do. How you dress. The way you love someone, and how you talk. Your smile and your personality. What you believe in, and all your dreams. The way you drink your tea. How you decorate your home. Or party. Your grocery list. The food you make. How your writing looks. And the way you feel. Life is art.”</p>
+
+          <p style="
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 200;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--olive-dark);
+          ">— Helena Bonham Carter</p>
+        </div>
+
+        <div class="about-photos pair-1">
+          <img class="about-photo-back" src="../images/about/dune.jpeg" alt="Wadden duin, Harlingen"/>
+          <img class="about-photo-front" src="../images/about/blue-blouse.jpeg" alt="MOJ klant in blauwe blouse" style="object-position: top;"/>
+        </div>
+
+      </div>
+
+      <!-- Rij 2: foto's links, tekst rechts -->
+      <div class="about-row text-right">
+
+        <div class="about-photos pair-2">
+          <img class="about-photo-back" src="../images/about/beige-knit.jpeg" alt="MOJ klant in beige vest"/>
+          <img class="about-photo-front" src="../images/about/blue-jumpsuit.jpeg" alt="MOJ klant in blauwe jumpsuit met korenbloemen" style="object-position: top;"/>
+        </div>
+
+        <div>
+          <p style="
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(16px, 1.8vw, 20px);
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--black);
+            margin-bottom: 24px;
+          ">Kom zoals je bent. Kijk rustig rond. Probeer eens wat.</p>
+
+          <p style="
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(14px, 1.2vw, 16px);
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--muted);
+            margin-bottom: 22px;
+          ">Bij MOJ verkopen we dameskleding, maar we houden niet zo van het idee dat kleding voor één soort mens, stijl of moment is.</p>
+
+          <p style="
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(14px, 1.2vw, 16px);
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--muted);
+          ">De ene keer zoek je gewoon die goede basic. De volgende keer trek je iets aan waarvan je denkt: dit is eigenlijk helemaal niks voor mij. Om het vervolgens toch mee te nemen.<br>Juist dát maakt kleding leuk. Dat je jezelf af en toe verrast.</p>
+        </div>
+
+      </div>
+
+      <!-- Rij 3: tekst links, foto rechts -->
+      <div class="about-row text-left">
+
+        <div>
+          <p style="
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(14px, 1.2vw, 16px);
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--muted);
+            margin-bottom: 22px;
+          ">Daarom hoef je bij ons ook nergens haast mee te hebben. Kijk. Pas. Combineer. Loop nog een rondje. Een goede keuze maken mag best even duren. En ondertussen mag het gewoon leuk zijn.</p>
+
+          <p style="
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(14px, 1.2vw, 16px);
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--muted);
+            margin-bottom: 22px;
+          ">Onze dames helpen je graag. Met zoeken, twijfelen, combineren of juist helemaal niets daarvan. Je kunt binnenkomen met een heel duidelijk plan, maar ook gewoon voor een sneup.</p>
+
+          <p style="
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 200;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--olive-dark);
+            line-height: 2.4;
+          ">Wij zijn er voor allebei.<br>Tot moj.</p>
+        </div>
+
+        <img class="about-photo-single" src="../images/about/taupe-suit.jpeg" alt="MOJ klant in taupe pak"/>
+
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    const navEl = document.getElementById('nav');
+    const heroEl = document.getElementById('hero');
+
+    function updateNav() {
+      const threshold = heroEl.offsetHeight - 40;
+      navEl.classList.toggle('hero-nav', window.scrollY < threshold);
+    }
+
+    navEl.classList.add('hero-nav');
+    updateNav();
+    window.addEventListener('scroll', updateNav);
   </script>
 
 </body>

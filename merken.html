@@ -9,21 +9,362 @@
 <body>
 
   <!-- Navigatie -->
-  <div id="nav"></div>
+  <div id="nav">
+    <style>
+      .nav-merken-item { position: relative; }
+      .merken-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        width: max-content;
+        max-width: 600px;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(8px);
+        border: 0.5px solid var(--border);
+        border-radius: 2px;
+        box-shadow: 0 16px 32px rgba(42,45,30,0.14);
+        padding: 26px 32px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 28px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .nav-merken-item:hover .merken-dropdown,
+      .merken-dropdown:hover {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+      .merken-dropdown a {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+      .merken-dropdown a:hover {
+        color: var(--olive-dark);
+      }
+      @media (max-width: 900px) {
+        .merken-dropdown { display: none; }
+      }
+
+      /* Mobiel: hamburgermenu — de laptop-weergave hieronder blijft volledig ongewijzigd,
+         want .nav-collapsible is op desktop "display: contents" (onzichtbaar als wrapper,
+         ul + Instagram-link gedragen zich gewoon als losse flex-kinderen van nav, zoals nu). */
+      .nav-toggle-checkbox { display: none; }
+      .nav-toggle-btn { display: none; }
+      .nav-collapsible { display: contents; }
+
+      @media (max-width: 900px) {
+        .nav-bar { padding: 18px 20px !important; }
+        .nav-logo { font-size: 20px !important; letter-spacing: 6px !important; }
+
+        .nav-toggle-btn {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          width: 26px;
+          height: 20px;
+          cursor: pointer;
+        }
+        .nav-toggle-btn span {
+          display: block;
+          height: 1px;
+          width: 100%;
+          background: var(--black);
+        }
+
+        .nav-collapsible {
+          display: none;
+        }
+        .nav-toggle-checkbox:checked ~ .nav-collapsible {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          max-height: calc(100vh - 60px);
+          overflow-y: auto;
+          background: rgba(255,255,255,0.98);
+          backdrop-filter: blur(8px);
+          border-bottom: 0.5px solid var(--border);
+          padding: 8px 20px 24px;
+        }
+        .nav-menu {
+          flex-direction: column !important;
+          gap: 0 !important;
+          width: 100%;
+        }
+        .nav-menu li a {
+          display: block;
+          padding: 14px 0;
+          border-bottom: 0.5px solid var(--border);
+          color: var(--muted) !important;
+        }
+        .nav-social {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <nav class="nav-bar" style="
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+    ">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" style="
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 24px;
+        font-weight: 200;
+        letter-spacing: 10px;
+        color: var(--black);
+      ">MOJ</a>
+
+      <!-- Mobiel: hamburger-toggle -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+      <label for="nav-toggle" class="nav-toggle-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <div class="nav-collapsible">
+
+        <!-- Menu links -->
+        <ul class="nav-menu" style="
+          list-style: none;
+          display: flex;
+          gap: 40px;
+        ">
+          <li><a href="index.html#about" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Over ons</a></li>
+
+          <li class="nav-merken-item">
+            <a href="merken.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Merken</a>
+
+            <div class="merken-dropdown">
+              <a href="merken/american-vintage.html">American Vintage</a>
+              <a href="merken/by-bar.html">By-Bar</a>
+              <a href="merken/mads-norgaard.html">Mads Nørgaard</a>
+              <a href="merken/lois.html">Lois</a>
+              <a href="merken/gai-lisva.html">GAI+LISVA</a>
+              <a href="merken/bellerose.html">Bellerose</a>
+              <a href="merken/sissel-edelbo.html">Sissel Edelbo</a>
+              <a href="merken/alohas.html">Alohas</a>
+              <a href="merken/my-essential-wardrobe.html">My Essential Wardrobe</a>
+              <a href="merken/club-lavenir.html">Club L'Avenir</a>
+              <a href="merken/pavement-shoes.html">Pavement Shoes</a>
+              <a href="merken/project-aj117.html">Project AJ117</a>
+              <a href="merken/knit-ted.html">Knit-ted</a>
+              <a href="merken/hod-paris.html">Hod Paris</a>
+            </div>
+          </li>
+
+          <li><a href="lookbook.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Lookbook</a></li>
+          <li><a href="private-shopping.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Private Shopping</a></li>
+          <li><a href="contact.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Contact</a></li>
+        </ul>
+
+        <!-- Instagram link -->
+        <a href="https://instagram.com" target="_blank" class="nav-social" style="
+          font-size: 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--muted);
+          border-bottom: 0.5px solid var(--border);
+          padding-bottom: 2px;
+        ">Instagram</a>
+
+      </div>
+
+    </nav>
+  </div>
 
   <!-- Merken -->
-  <div id="merken"></div>
+  <div id="merken">
+    <style>
+      .merken-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        align-items: stretch;
+      }
 
-  <script>
-    const sections = ['nav', 'merken'];
-    sections.forEach(name => {
-      fetch(`sections/${name}.html`)
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById(name).innerHTML = html;
-        });
-    });
-  </script>
+      .brand {
+        display: block;
+        padding: 22px 24px;
+        border-radius: 2px;
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+      .brand:hover {
+        filter: brightness(0.93);
+        z-index: 10;
+        transform: scale(1.03);
+      }
+      .brand-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 1.1;
+        display: block;
+        margin-bottom: 4px;
+        color: var(--black);
+      }
+      .brand-origin {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--olive-dark);
+        display: block;
+        margin-bottom: 10px;
+      }
+      .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10, .b11, .b12, .b13, .b14 {
+        background: var(--sand);
+      }
+
+      @keyframes popIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to   { opacity: 1; }
+      }
+      .brand { animation: popIn 0.5s ease both; }
+      .b1 { animation-delay: 0.05s; }
+      .b2 { animation-delay: 0.10s; }
+      .b3 { animation-delay: 0.15s; }
+      .b4 { animation-delay: 0.20s; }
+      .b5 { animation-delay: 0.25s; }
+      .b6 { animation-delay: 0.30s; }
+      .b7 { animation-delay: 0.35s; }
+      .b8 { animation-delay: 0.40s; }
+      .b9 { animation-delay: 0.45s; }
+      .b10 { animation-delay: 0.50s; }
+      .b11 { animation-delay: 0.55s; }
+      .b12 { animation-delay: 0.60s; }
+      .b13 { animation-delay: 0.65s; }
+      .b14 { animation-delay: 0.70s; }
+
+      @media (max-width: 700px) {
+        .merken-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 480px) {
+        .merken-grid { grid-template-columns: 1fr; }
+        .merken-section { padding: 120px 20px 60px !important; }
+      }
+    </style>
+
+    <section class="merken-section" style="padding: 156px 40px 80px; background: transparent;">
+
+      <div style="margin-bottom: 80px;">
+        <h2 style="
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: clamp(28px, 4vw, 48px);
+          font-weight: 200;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          color: var(--black);
+          margin-bottom: 12px;
+        ">Onze Merken</h2>
+        <p style="
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 18px;
+          font-weight: 300;
+          font-style: italic;
+          color: var(--muted);
+        ">Zorgvuldig geselecteerd. Elk merk een verhaal.</p>
+      </div>
+
+      <div class="merken-grid">
+
+        <a class="brand b1" href="merken/american-vintage.html">
+          <span class="brand-name">American Vintage</span>
+          <span class="brand-origin">Frankrijk</span>
+        </a>
+
+        <a class="brand b2" href="merken/by-bar.html">
+          <span class="brand-name">By-Bar</span>
+          <span class="brand-origin">Nederland</span>
+        </a>
+
+        <a class="brand b3" href="merken/mads-norgaard.html">
+          <span class="brand-name">Mads Nørgaard</span>
+          <span class="brand-origin">Denemarken</span>
+        </a>
+
+        <a class="brand b4" href="merken/lois.html">
+          <span class="brand-name">Lois</span>
+          <span class="brand-origin">Spanje</span>
+        </a>
+
+        <a class="brand b5" href="merken/gai-lisva.html">
+          <span class="brand-name">GAI+LISVA</span>
+          <span class="brand-origin">Denemarken</span>
+        </a>
+
+        <a class="brand b6" href="merken/bellerose.html">
+          <span class="brand-name">Bellerose</span>
+          <span class="brand-origin">België</span>
+        </a>
+
+        <a class="brand b7" href="merken/sissel-edelbo.html">
+          <span class="brand-name">Sissel Edelbo</span>
+          <span class="brand-origin">Denemarken</span>
+        </a>
+
+        <a class="brand b8" href="merken/alohas.html">
+          <span class="brand-name">Alohas</span>
+          <span class="brand-origin">Spanje</span>
+        </a>
+
+        <a class="brand b9" href="merken/my-essential-wardrobe.html">
+          <span class="brand-name">My Essential Wardrobe</span>
+          <span class="brand-origin">Denemarken</span>
+        </a>
+
+        <a class="brand b10" href="merken/club-lavenir.html">
+          <span class="brand-name">Club L'Avenir</span>
+          <span class="brand-origin">België</span>
+        </a>
+
+        <a class="brand b11" href="merken/pavement-shoes.html">
+          <span class="brand-name">Pavement Shoes</span>
+          <span class="brand-origin">Denemarken</span>
+        </a>
+
+        <a class="brand b12" href="merken/project-aj117.html">
+          <span class="brand-name">Project AJ117</span>
+          <span class="brand-origin">Denemarken</span>
+        </a>
+
+        <a class="brand b13" href="merken/knit-ted.html">
+          <span class="brand-name">Knit-ted</span>
+          <span class="brand-origin">Nederland</span>
+        </a>
+
+        <a class="brand b14" href="merken/hod-paris.html">
+          <span class="brand-name">Hod Paris</span>
+          <span class="brand-origin">Frankrijk</span>
+        </a>
+
+      </div>
+
+    </section>
+  </div>
 
 </body>
 </html>

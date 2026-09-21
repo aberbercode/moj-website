@@ -9,21 +9,286 @@
 <body>
 
   <!-- Navigatie -->
-  <div id="nav"></div>
+  <div id="nav">
+    <style>
+      .nav-merken-item { position: relative; }
+      .merken-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        width: max-content;
+        max-width: 600px;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(8px);
+        border: 0.5px solid var(--border);
+        border-radius: 2px;
+        box-shadow: 0 16px 32px rgba(42,45,30,0.14);
+        padding: 26px 32px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 28px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .nav-merken-item:hover .merken-dropdown,
+      .merken-dropdown:hover {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+      .merken-dropdown a {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+      .merken-dropdown a:hover {
+        color: var(--olive-dark);
+      }
+      @media (max-width: 900px) {
+        .merken-dropdown { display: none; }
+      }
+
+      /* Mobiel: hamburgermenu — de laptop-weergave hieronder blijft volledig ongewijzigd,
+         want .nav-collapsible is op desktop "display: contents" (onzichtbaar als wrapper,
+         ul + Instagram-link gedragen zich gewoon als losse flex-kinderen van nav, zoals nu). */
+      .nav-toggle-checkbox { display: none; }
+      .nav-toggle-btn { display: none; }
+      .nav-collapsible { display: contents; }
+
+      @media (max-width: 900px) {
+        .nav-bar { padding: 18px 20px !important; }
+        .nav-logo { font-size: 20px !important; letter-spacing: 6px !important; }
+
+        .nav-toggle-btn {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          width: 26px;
+          height: 20px;
+          cursor: pointer;
+        }
+        .nav-toggle-btn span {
+          display: block;
+          height: 1px;
+          width: 100%;
+          background: var(--black);
+        }
+
+        .nav-collapsible {
+          display: none;
+        }
+        .nav-toggle-checkbox:checked ~ .nav-collapsible {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          max-height: calc(100vh - 60px);
+          overflow-y: auto;
+          background: rgba(255,255,255,0.98);
+          backdrop-filter: blur(8px);
+          border-bottom: 0.5px solid var(--border);
+          padding: 8px 20px 24px;
+        }
+        .nav-menu {
+          flex-direction: column !important;
+          gap: 0 !important;
+          width: 100%;
+        }
+        .nav-menu li a {
+          display: block;
+          padding: 14px 0;
+          border-bottom: 0.5px solid var(--border);
+          color: var(--muted) !important;
+        }
+        .nav-social {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <nav class="nav-bar" style="
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+    ">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" style="
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 24px;
+        font-weight: 200;
+        letter-spacing: 10px;
+        color: var(--black);
+      ">MOJ</a>
+
+      <!-- Mobiel: hamburger-toggle -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+      <label for="nav-toggle" class="nav-toggle-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <div class="nav-collapsible">
+
+        <!-- Menu links -->
+        <ul class="nav-menu" style="
+          list-style: none;
+          display: flex;
+          gap: 40px;
+        ">
+          <li><a href="index.html#about" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Over ons</a></li>
+
+          <li class="nav-merken-item">
+            <a href="merken.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Merken</a>
+
+            <div class="merken-dropdown">
+              <a href="merken/american-vintage.html">American Vintage</a>
+              <a href="merken/by-bar.html">By-Bar</a>
+              <a href="merken/mads-norgaard.html">Mads Nørgaard</a>
+              <a href="merken/lois.html">Lois</a>
+              <a href="merken/gai-lisva.html">GAI+LISVA</a>
+              <a href="merken/bellerose.html">Bellerose</a>
+              <a href="merken/sissel-edelbo.html">Sissel Edelbo</a>
+              <a href="merken/alohas.html">Alohas</a>
+              <a href="merken/my-essential-wardrobe.html">My Essential Wardrobe</a>
+              <a href="merken/club-lavenir.html">Club L'Avenir</a>
+              <a href="merken/pavement-shoes.html">Pavement Shoes</a>
+              <a href="merken/project-aj117.html">Project AJ117</a>
+              <a href="merken/knit-ted.html">Knit-ted</a>
+              <a href="merken/hod-paris.html">Hod Paris</a>
+            </div>
+          </li>
+
+          <li><a href="lookbook.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Lookbook</a></li>
+          <li><a href="private-shopping.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Private Shopping</a></li>
+          <li><a href="contact.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Contact</a></li>
+        </ul>
+
+        <!-- Instagram link -->
+        <a href="https://instagram.com" target="_blank" class="nav-social" style="
+          font-size: 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--muted);
+          border-bottom: 0.5px solid var(--border);
+          padding-bottom: 2px;
+        ">Instagram</a>
+
+      </div>
+
+    </nav>
+  </div>
 
   <!-- Private Shopping -->
-  <div id="private-shopping"></div>
+  <div id="private-shopping">
+    <style>
+      .ps-page {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+        min-height: 100vh;
+      }
+      .ps-photo {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px;
+      }
+      .ps-photo img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        border-radius: 4px;
+      }
+      .ps-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 156px 80px 80px;
+      }
+      @media (max-width: 800px) {
+        .ps-page { grid-template-columns: 1fr; }
+        .ps-photo { height: 50vh; }
+        .ps-text { padding: 56px 32px; }
+      }
+    </style>
 
-  <script>
-    const sections = ['nav', 'private-shopping'];
-    sections.forEach(name => {
-      fetch(`sections/${name}.html`)
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById(name).innerHTML = html;
-        });
-    });
-  </script>
+    <section class="ps-page" style="background: var(--sand);">
+
+      <div class="ps-photo">
+        <img src="../images/private-shopping/blue-fish.jpeg" alt="Private Shopping bij MOJ"/>
+      </div>
+
+      <div class="ps-text">
+        <h1 style="
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: clamp(28px, 4vw, 44px);
+          font-weight: 200;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          color: var(--black);
+          margin-bottom: 24px;
+        ">Private Shopping</h1>
+
+        <p style="
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 19px;
+          font-weight: 300;
+          line-height: 1.75;
+          color: var(--muted);
+          margin-bottom: 28px;
+        ">Shoppen met je vriendinnen, collega's of familie? Op woensdag- of donderdagavond openen we de winkel speciaal voor jullie. In alle rust passen, persoonlijk styling-advies, een drankje en iets lekkers erbij.</p>
+
+        <p style="
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 19px;
+          font-weight: 300;
+          line-height: 1.75;
+          color: var(--muted);
+          margin-bottom: 36px;
+        ">Een private shopavond is voor groepen van 4 tot 10 personen, duurt ongeveer twee uur en is helemaal gratis. Stuur ons minimaal een week van tevoren een berichtje, dan plannen we samen een datum.</p>
+
+        <a href="https://wa.me/31612220994" target="_blank" style="
+          display: inline-flex;
+          align-items: center;
+          width: fit-content;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--black);
+          background: var(--white);
+          border: 0.5px solid var(--border);
+          padding: 12px 24px;
+          border-radius: 2px;
+          text-decoration: none;
+        ">Plan je avond</a>
+      </div>
+
+    </section>
+  </div>
 
 </body>
 </html>
