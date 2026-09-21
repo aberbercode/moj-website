@@ -48,12 +48,20 @@
     .lb-grid { grid-template-columns: 1fr 1fr; }
     .lb-item { transform: none !important; }
   }
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     .lb-grid { grid-template-columns: 1fr; }
+    .lb-item {
+      grid-column: auto !important;
+      grid-row: auto !important;
+      height: 300px !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .lb-section { padding: 120px 20px 60px !important; }
   }
 </style>
 
-<section style="padding: 156px 40px 80px; background: transparent;">
+<section class="lb-section" style="padding: 156px 40px 80px; background: transparent;">
 
   <div style="margin-bottom: 80px;">
     <h2 style="

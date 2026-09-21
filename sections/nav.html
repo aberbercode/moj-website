@@ -44,9 +44,69 @@
   @media (max-width: 900px) {
     .merken-dropdown { display: none; }
   }
+
+  /* Mobiel: hamburgermenu — de laptop-weergave hieronder blijft volledig ongewijzigd,
+     want .nav-collapsible is op desktop "display: contents" (onzichtbaar als wrapper,
+     ul + Instagram-link gedragen zich gewoon als losse flex-kinderen van nav, zoals nu). */
+  .nav-toggle-checkbox { display: none; }
+  .nav-toggle-btn { display: none; }
+  .nav-collapsible { display: contents; }
+
+  @media (max-width: 900px) {
+    .nav-bar { padding: 18px 20px !important; }
+    .nav-logo { font-size: 20px !important; letter-spacing: 6px !important; }
+
+    .nav-toggle-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 26px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .nav-toggle-btn span {
+      display: block;
+      height: 1px;
+      width: 100%;
+      background: var(--black);
+    }
+
+    .nav-collapsible {
+      display: none;
+    }
+    .nav-toggle-checkbox:checked ~ .nav-collapsible {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: calc(100vh - 60px);
+      overflow-y: auto;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 8px 20px 24px;
+    }
+    .nav-menu {
+      flex-direction: column !important;
+      gap: 0 !important;
+      width: 100%;
+    }
+    .nav-menu li a {
+      display: block;
+      padding: 14px 0;
+      border-bottom: 0.5px solid var(--border);
+      color: var(--muted) !important;
+    }
+    .nav-social {
+      display: none !important;
+    }
+  }
 </style>
 
-<nav style="
+<nav class="nav-bar" style="
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
@@ -60,7 +120,7 @@
 ">
 
   <!-- Logo -->
-  <a href="index.html" style="
+  <a href="index.html" class="nav-logo" style="
     font-family: 'Josefin Sans', sans-serif;
     font-size: 24px;
     font-weight: 200;
@@ -68,48 +128,58 @@
     color: var(--black);
   ">MOJ</a>
 
-  <!-- Menu links -->
-  <ul style="
-    list-style: none;
-    display: flex;
-    gap: 40px;
-  ">
-    <li><a href="index.html#about" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Over ons</a></li>
+  <!-- Mobiel: hamburger-toggle -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+  <label for="nav-toggle" class="nav-toggle-btn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </label>
 
-    <li class="nav-merken-item">
-      <a href="merken.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Merken</a>
+  <div class="nav-collapsible">
 
-      <div class="merken-dropdown">
-        <a href="merken/american-vintage.html">American Vintage</a>
-        <a href="merken/by-bar.html">By-Bar</a>
-        <a href="merken/mads-norgaard.html">Mads Nørgaard</a>
-        <a href="merken/lois.html">Lois</a>
-        <a href="merken/gai-lisva.html">GAI+LISVA</a>
-        <a href="merken/bellerose.html">Bellerose</a>
-        <a href="merken/sissel-edelbo.html">Sissel Edelbo</a>
-        <a href="merken/alohas.html">Alohas</a>
-        <a href="merken/my-essential-wardrobe.html">My Essential Wardrobe</a>
-        <a href="merken/club-lavenir.html">Club L'Avenir</a>
-        <a href="merken/pavement-shoes.html">Pavement Shoes</a>
-        <a href="merken/project-aj117.html">Project AJ117</a>
-        <a href="merken/knit-ted.html">Knit-ted</a>
-        <a href="merken/hod-paris.html">Hod Paris</a>
-      </div>
-    </li>
+    <!-- Menu links -->
+    <ul class="nav-menu" style="
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    ">
+      <li><a href="index.html#about" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Over ons</a></li>
 
-    <li><a href="lookbook.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Lookbook</a></li>
-    <li><a href="private-shopping.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Private Shopping</a></li>
-    <li><a href="contact.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Contact</a></li>
-  </ul>
+      <li class="nav-merken-item">
+        <a href="merken.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Merken</a>
 
-  <!-- Instagram link -->
-  <a href="https://instagram.com" target="_blank" style="
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    border-bottom: 0.5px solid var(--border);
-    padding-bottom: 2px;
-  ">Instagram</a>
+        <div class="merken-dropdown">
+          <a href="merken/american-vintage.html">American Vintage</a>
+          <a href="merken/by-bar.html">By-Bar</a>
+          <a href="merken/mads-norgaard.html">Mads Nørgaard</a>
+          <a href="merken/lois.html">Lois</a>
+          <a href="merken/gai-lisva.html">GAI+LISVA</a>
+          <a href="merken/bellerose.html">Bellerose</a>
+          <a href="merken/sissel-edelbo.html">Sissel Edelbo</a>
+          <a href="merken/alohas.html">Alohas</a>
+          <a href="merken/my-essential-wardrobe.html">My Essential Wardrobe</a>
+          <a href="merken/club-lavenir.html">Club L'Avenir</a>
+          <a href="merken/pavement-shoes.html">Pavement Shoes</a>
+          <a href="merken/project-aj117.html">Project AJ117</a>
+          <a href="merken/knit-ted.html">Knit-ted</a>
+          <a href="merken/hod-paris.html">Hod Paris</a>
+        </div>
+      </li>
+
+      <li><a href="lookbook.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Lookbook</a></li>
+      <li><a href="private-shopping.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Private Shopping</a></li>
+      <li><a href="contact.html" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);">Contact</a></li>
+    </ul>
+
+    <!-- Instagram link -->
+    <a href="https://instagram.com" target="_blank" class="nav-social" style="
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 0.5px solid var(--border);
+      padding-bottom: 2px;
+    ">Instagram</a>
+
+  </div>
 
 </nav>
