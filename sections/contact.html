@@ -8,21 +8,36 @@
   .contact-footer {
     padding: 40px 60px;
     border-top: 0.5px solid var(--border);
+    background: transparent;
+  }
+  .contact-footer-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: transparent;
     gap: 12px;
+  }
+  .contact-footer-legal {
+    margin-top: 20px;
+  }
+  .contact-footer-legal a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .contact-footer-legal a:hover {
+    color: var(--olive-dark);
   }
   @media (max-width: 800px) {
     .contact-section { padding: 100px 24px 60px !important; }
     .contact-grid { grid-template-columns: 1fr; gap: 48px; }
     .contact-shop-photo { height: 320px !important; }
-    .contact-footer {
+    .contact-footer { padding: 32px 24px; }
+    .contact-footer-row {
       flex-direction: column;
       text-align: center;
       gap: 10px;
-      padding: 32px 24px;
     }
   }
 </style>
@@ -216,6 +231,22 @@
           </svg>
           MOJ Harlingen
         </a>
+
+        <p style="
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 11px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          color: var(--olive-dark);
+          margin-top: 20px;
+          margin-bottom: 12px;
+        ">KvK</p>
+        <p style="
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 20px;
+          font-weight: 300;
+          color: var(--black);
+        ">95566244</p>
       </div>
 
     </div>
@@ -261,21 +292,24 @@
 
 <!-- Footer -->
 <footer class="contact-footer">
-  <p style="
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 200;
-    letter-spacing: 8px;
-    color: var(--black);
-  ">MOJ</p>
-  <p style="
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    color: var(--muted);
-  ">WAD mooi Harlingen.</p>
-  <p style="
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    color: var(--muted);
-  ">Voorstraat 53, Harlingen</p>
+  <div class="contact-footer-row">
+    <p style="
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 200;
+      letter-spacing: 8px;
+      color: var(--black);
+    ">MOJ</p>
+    <p style="
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: var(--muted);
+    ">WAD mooi Harlingen.</p>
+    <p style="
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: var(--muted);
+    ">Voorstraat 53, Harlingen</p>
+  </div>
+  <p class="contact-footer-legal" style="text-align: center;"><a href="privacy.html">Privacyverklaring</a></p>
 </footer>
