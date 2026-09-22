@@ -58,26 +58,22 @@
     <style>
       .nav-merken-item { position: relative; }
       .merken-dropdown {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 76px;
         left: 0;
-        transform: translateY(-6px);
-        width: max-content;
-        min-width: 150px;
-        background: rgba(232, 226, 208, 0.55);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border: 0.5px solid rgba(255, 255, 255, 0.4);
-        border-radius: 2px;
-        box-shadow: 0 8px 24px rgba(42, 45, 30, 0.08);
-        padding: 18px 22px 20px 0;
+        right: 0;
+        z-index: 99;
+        background: var(--sand);
+        border-bottom: 0.5px solid var(--border);
+        padding: 28px 60px;
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 13px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px 32px;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
+        transform: translateY(-6px);
         transition: opacity 0.2s ease, transform 0.2s ease;
       }
       .nav-merken-item:hover .merken-dropdown,
