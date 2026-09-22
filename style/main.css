@@ -1,4 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400&display=swap');
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('../fonts/JosefinSans-Thin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/JosefinSans-Thin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/CormorantGaramond-Regular300.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/CormorantGaramond-Italic300.woff2') format('woff2');
+}
 
 :root {
   --olive:       #D3D9AB;
