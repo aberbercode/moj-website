@@ -53,7 +53,7 @@
       .nav-merken-item { position: static; }
       .merken-dropdown {
         position: absolute;
-        top: 100%;
+        top: calc(100% + 12px);
         left: 0;
         right: 0;
         z-index: 99;
@@ -68,7 +68,15 @@
         visibility: hidden;
         pointer-events: none;
         transform: translateY(-6px);
-        transition: opacity 0.2s ease, transform 0.2s ease;
+        transition: opacity 0.2s ease 0.2s, transform 0.2s ease 0.2s, visibility 0s linear 0.4s;
+      }
+      .merken-dropdown::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: 0;
+        right: 0;
+        height: 12px;
       }
       .nav-merken-item:hover .merken-dropdown,
       .nav-merken-item:focus-within .merken-dropdown,
@@ -77,6 +85,7 @@
         visibility: visible;
         pointer-events: auto;
         transform: translateY(0);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
       }
       .merken-dropdown a {
         font-family: 'Cormorant Garamond', serif;
