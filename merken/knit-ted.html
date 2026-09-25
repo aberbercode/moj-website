@@ -76,14 +76,7 @@
         transform: translateY(-6px);
         transition: opacity 0.2s ease, transform 0.2s ease;
       }
-      .merken-dropdown::before {
-        content: "";
-        position: absolute;
-        top: -40px;
-        left: 0;
-        right: 0;
-        height: 40px;
-      }
+      .merken-dropdown.is-open,
       .nav-merken-item:hover .merken-dropdown,
       .nav-merken-item:focus-within .merken-dropdown,
       .merken-dropdown:hover {
@@ -107,6 +100,11 @@
       .merken-dropdown a:focus {
         color: var(--olive-dark);
         border-bottom-color: var(--olive-dark);
+      }
+      .nav-menu > li > a,
+      .nav-social {
+        position: relative;
+        z-index: 101;
       }
       @media (max-width: 900px) {
         .merken-dropdown { display: none; }
@@ -261,6 +259,33 @@
 
     </nav>
   </div>
+
+<script>
+(function () {
+  var item = document.querySelector('.nav-merken-item');
+  var panel = item ? item.querySelector('.merken-dropdown') : null;
+  if (!item || !panel) return;
+  var closeTimer = null;
+  function open() {
+    clearTimeout(closeTimer);
+    panel.classList.add('is-open');
+  }
+  function scheduleClose() {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(function () {
+      panel.classList.remove('is-open');
+    }, 250);
+  }
+  item.addEventListener('mouseenter', open);
+  item.addEventListener('mouseleave', scheduleClose);
+  panel.addEventListener('mouseenter', open);
+  panel.addEventListener('mouseleave', scheduleClose);
+  item.addEventListener('focusin', open);
+  item.addEventListener('focusout', function (e) {
+    if (!item.contains(e.relatedTarget)) scheduleClose();
+  });
+})();
+</script>
 
   <section class="brand-page" style="background: var(--sand);">
 
